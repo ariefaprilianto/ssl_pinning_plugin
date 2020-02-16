@@ -69,11 +69,12 @@ public class SwiftSslPinningPlugin: NSObject, FlutterPlugin {
 
         manager.delegate.sessionDidReceiveChallenge = { session, challenge in
 
+            var secresult = SecTrustResultType.invalid
             guard
                 let _serverTrust = challenge.protectionSpace.serverTrust,
                 let _serverCert = SecTrustGetCertificateAtIndex(_serverTrust, 0),
                 challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
-                SecTrustEvaluate(_serverTrust, nil) == errSecSuccess
+                SecTrustEvaluate(_serverTrust, &secresult) == errSecSuccess
                 else {
                     self.sendResponse(result: FlutterError(code: "ERROR CERT", message: "Le certificat est invalide", details: nil))
                     return (.cancelAuthenticationChallenge, nil)
