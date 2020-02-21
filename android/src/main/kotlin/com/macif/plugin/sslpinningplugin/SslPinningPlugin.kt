@@ -79,7 +79,7 @@ class SslPinningPlugin() : MethodCallHandler {
 
         val cert: Certificate = httpClient.getServerCertificates()[0] as Certificate
 
-        return this.hashString(type, cert.getEncoded())
+        return hashString(type, cert.getEncoded())
 
     }
 
