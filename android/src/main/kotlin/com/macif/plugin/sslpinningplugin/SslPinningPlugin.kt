@@ -64,7 +64,7 @@ class SslPinningPlugin() : MethodCallHandler {
     }
 
     fun checkConnexion(serverURL: String, allowedFingerprints: List<String>, httpHeaderArgs: Map<String, String>, timeout: Int, type: String): Boolean {
-        val sha: String = this.getFingerprint(serverURL, timeout, httpHeaderArgs, type)
+        val sha: String = getFingerprint(serverURL, timeout, httpHeaderArgs, type)
         return allowedFingerprints.map { fp -> fp.toUpperCase().replace("\\s".toRegex(), "") }.contains(sha)
     }
 
