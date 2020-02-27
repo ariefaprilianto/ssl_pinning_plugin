@@ -74,7 +74,7 @@ class SslPinningPlugin() : MethodCallHandler {
         val url = URL(httpsURL)
         val httpClient: HttpsURLConnection = url.openConnection() as HttpsURLConnection
 
-        httpHeaderArgs.forEach { key, value -> httpClient.setRequestProperty(key, value) }
+        httpHeaderArgs.forEach { (key, value) -> httpClient.setRequestProperty(key, value) }
         httpClient.connect();
 
         val cert: Certificate = httpClient.getServerCertificates()[0] as Certificate
